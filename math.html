@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Simulation Project</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<style>
+		table{
+			margin-top: 30px;
+		}
+		input{
+			width: 80px;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 text-center">
+				<h1>Simulation of Queueing Syste</h1>
+				<h3>Single channel Queue</h3>
+			</div>
+		</div>
+
+
+
+		<div class="row">
+			<div class="col-md-12">
+				<div class="main-content">
+					
+					  <table class="table table-bordered">
+					    <thead class="thead-light">
+					      <tr >
+					        <th scope="col" class="text-center">Customer</th>
+					        <th scope="col" class="text-center">Time Last Arrival</th>
+					        <th scope="col" class="text-center">Arrival time</th>
+					        <th scope="col" class="text-center">Service time</t>
+				        	<th scope="col" class="text-center">Time service begins</th>
+				        	<th scope="col" class="text-center">Time customer wait in queue</th>
+				        	<th scope="col" class="text-center">time service end</th>
+				        	<th scope="col" class="text-center">customer speend in system</t>
+			        		<th scope="col" class="text-center">Idel time of server</th>
+			        		
+					      </tr>
+					    </thead>
+
+					    <tbody id="add-content-area">
+							
+					      <tr class="text-center">
+					        <th scope="row" class="text-center" ><input class="text-center" type="text" ></th>
+					        <th scope="row" class="text-center" ><input  class="text-center" type="text" ></th>
+					        <th scope="row" class="text-center" ><input  class="text-center" type="text" ></th>
+					        <th scope="row" class="text-center" ><input  class="text-center" type="text" ></th>
+					        <th scope="row" class="text-center" ><input class="text-center" type="text" ></th>
+					        <th scope="row" class="text-center" ><input  class="text-center" type="text" ></th>
+					        <th scope="row" class="text-center" ><input class="text-center" type="text" ></th>
+					        <th scope="row" class="text-center" ><input  class="text-center" type="text" ></th>
+					        <th scope="row" class="text-center" ><input  class="text-center" type="text" ></th>
+					      </tr>
+					    </tbody>
+					</table>
+
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-12 text-center">
+				<button onclick="transaction()" class="btn btn-primary">Add Transaction</button>
+				<button onclick="calculate()" class="btn btn-primary">Calculate Ans</button>
+			</div>
+		</div>
+
+
+
+
+		<div class="row">
+	
+			<div class="col-md-4">
+				<div class="single-secton">
+				
+					<ul>
+						<li>Total Customer : <span id="totalCustomer"></span></li>
+						<li>Service Time : <span id="ServiceTimeVal"></span></li>
+						<li>Time customer wait in queue :<span id="TimeCustomerWaiteInSystem"></span></li>
+						<li>Idel time of server : <span id="idelTimeval"></span></li>
+						<li>Time Customer WaitIn Queue : <span id="TimeCustomerWaitInQueueVal"></span></li>
+					</ul>
+					
+				</div>
+			</div>
+		</div>
+		
+		<div class="footer text-center">
+			<h5>copyright <a target="_blank"href="https://www.facebook.com/m.n.u.yea.hia.khan">Nasir Khan</a> © <a target="_blank" href="https://www.facebook.com/profile.php?id=100005575384254">Ms. Israt Jahan</a></h5>
+		</div>
+	</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+	var customer,TimeLastArrival,ArrivalTime,WaitInQueue,ServiceTime,TimeServiceBegins,TimeServiceEnd,TimeInSystem,IdelTime;
+	var TimeCustomerWaitInQueueVal = 0,ServiceTimeVal = 0,TimeCustomerWaiteInSystem = 0,idelTimeval = 0;
+	var totalCustomer = 0 ; i;
+	function transaction(){
+		
+
+
+		var allClass = ["customer","TimeLastArrival","ArrivalTime","ServiceTime","TimeServiceBegins","WaitInQueue","TimeServiceEnd","TimeInSystem","IdelTime"];
+
+		var allValue = document.getElementsByTagName('input');
+
+
+		var addItem = document.getElementById('add-content-area');
+
+		var tr = document.createElement('tr');
+		var td =  document.createElement('td');
+
+		var text;
+		
+
+		//tr.appendChild(td);
+		addItem.appendChild(tr);
+		tr.classList.add("text-center");
+
+		for(i =0; i<9; i++){
+			text = document.createTextNode(allValue[i].value);
+			td =  document.createElement('td');
+			td.appendChild(text);
+			td.classList.add(allClass[i]);
+			tr.appendChild(td);
+			allValue[i].value = "";
+		}
+
+		
+
+		customer = document.getElementsByClassName('customer');
+		TimeLastArrival = document.getElementsByClassName('TimeLastArrival');
+		ArrivalTime = document.getElementsByClassName('ArrivalTime');
+		WaitInQueue = document.getElementsByClassName('WaitInQueue');
+		TimeServiceEnd = document.getElementsByClassName('TimeServiceEnd');
+		ServiceTime = document.getElementsByClassName('ServiceTime');
+		TimeServiceBegins = document.getElementsByClassName('TimeServiceBegins');
+		TimeInSystem = document.getElementsByClassName('TimeInSystem');
+		IdelTime = document.getElementsByClassName('IdelTime');
+		
+
+
+
+
+
+
+	}
+
+	function calculate(){
+
+
+
+
+
+		for(i=0;i<ServiceTime.length;i++){
+			if(ServiceTime[i].innerHTML !=""){
+				ServiceTimeVal += parseFloat(ServiceTime[i].innerHTML);
+			}
+			totalCustomer++;
+		}
+	
+
+
+		console.log(TimeCustomerWaitInQueueVal);
+
+		for(i=0;i<WaitInQueue.length;i++){
+			if(WaitInQueue[i].innerHTML !=""){
+				TimeCustomerWaitInQueueVal += parseFloat(WaitInQueue[i].innerHTML);
+
+			}
+		}
+		
+
+
+
+
+		for(i=0;i<TimeInSystem.length;i++){
+			if(TimeInSystem[i].innerHTML !=""){
+				TimeCustomerWaiteInSystem += parseFloat(TimeInSystem[i].innerHTML);
+			}
+		}
+	
+
+
+
+
+		for(i=0;i<IdelTime.length;i++){
+			if(IdelTime[i].innerHTML !=""){
+				idelTimeval += parseFloat(IdelTime[i].innerHTML);
+			}
+		}
+		
+
+
+
+		document.getElementById('ServiceTimeVal').innerHTML = ServiceTimeVal;
+		document.getElementById('TimeCustomerWaitInQueueVal').innerHTML = TimeCustomerWaitInQueueVal;
+		document.getElementById('TimeCustomerWaiteInSystem').innerHTML = TimeCustomerWaiteInSystem;
+		document.getElementById('idelTimeval').innerHTML = idelTimeval;
+		document.getElementById('totalCustomer').innerHTML = totalCustomer;
+		
+		console.log(TimeCustomerWaitInQueueVal);
+		
+
+
+	}
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
