@@ -2,6 +2,9 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+	<meta name="description" content="Single channel Queue">
+	<meta name="keywords" content="HTML,CSS,XML,JavaScript project,Single channel Queue">
+	<meta name="author" content="Nasir Khan">
 	<title>Simulation Project</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<style>
@@ -14,6 +17,8 @@
 	</style>
 </head>
 <body>
+
+	<!-- project title -->
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12 text-center">
@@ -22,7 +27,7 @@
 			</div>
 		</div>
 
-
+		<!-- table start -->
 
 		<div class="row">
 			<div class="col-md-12">
@@ -57,6 +62,7 @@
 					        <th scope="row" class="text-center" ><input  class="text-center" type="text" ></th>
 					        <th scope="row" class="text-center" ><input  class="text-center" type="text" ></th>
 					      </tr>
+
 					    </tbody>
 					</table>
 
@@ -64,15 +70,19 @@
 			</div>
 		</div>
 
+		<!-- table end -->
+
+		<!-- programe button start -->
 		<div class="row">
 			<div class="col-md-12 text-center">
 				<button onclick="transaction()" class="btn btn-primary">Add Transaction</button>
 				<button onclick="calculate()" class="btn btn-primary">Calculate Ans</button>
 			</div>
 		</div>
+		
+		<!-- programe button end -->
 
-
-
+		<!-- result section start -->
 
 		<div class="row">
 	
@@ -90,51 +100,40 @@
 				</div>
 			</div>
 		</div>
-		
+		<!-- result section end -->
+
+
+		<!-- footer start -->
 		<div class="footer text-center">
 			<h5>copyright <a target="_blank"href="https://www.facebook.com/m.n.u.yea.hia.khan">Nasir Khan</a> © <a target="_blank" href="https://www.facebook.com/profile.php?id=100005575384254">Ms. Israt Jahan</a></h5>
 		</div>
+
+
+		<!-- footer end -->
 	</div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<!-- java scriot start -->
 <script>
+	// all variable
 	var customer,TimeLastArrival,ArrivalTime,WaitInQueue,ServiceTime,TimeServiceBegins,TimeServiceEnd,TimeInSystem,IdelTime;
 	var TimeCustomerWaitInQueueVal = 0,ServiceTimeVal = 0,TimeCustomerWaiteInSystem = 0,idelTimeval = 0;
-	var totalCustomer = 0 ; i;
+	var totalCustomer = 0 , i , text;
+	// add transaction function start
 	function transaction(){
-		
-
-
+		// all class array
 		var allClass = ["customer","TimeLastArrival","ArrivalTime","ServiceTime","TimeServiceBegins","WaitInQueue","TimeServiceEnd","TimeInSystem","IdelTime"];
-
+		// take all input variable and make a array
 		var allValue = document.getElementsByTagName('input');
-
-
+		// select where new row wittl add
 		var addItem = document.getElementById('add-content-area');
-
+		// create a table row (tr)
 		var tr = document.createElement('tr');
+		// create a table data (td)
 		var td =  document.createElement('td');
-
-		var text;
-		
-
-		//tr.appendChild(td);
+		//now add our created row in selected area with a class;
 		addItem.appendChild(tr);
 		tr.classList.add("text-center");
-
+		// now set input valeu to aur create row and make empty of our input area
 		for(i =0; i<9; i++){
 			text = document.createTextNode(allValue[i].value);
 			td =  document.createElement('td');
@@ -143,9 +142,7 @@
 			tr.appendChild(td);
 			allValue[i].value = "";
 		}
-
-		
-
+		// select all column make a array
 		customer = document.getElementsByClassName('customer');
 		TimeLastArrival = document.getElementsByClassName('TimeLastArrival');
 		ArrivalTime = document.getElementsByClassName('ArrivalTime');
@@ -155,87 +152,44 @@
 		TimeServiceBegins = document.getElementsByClassName('TimeServiceBegins');
 		TimeInSystem = document.getElementsByClassName('TimeInSystem');
 		IdelTime = document.getElementsByClassName('IdelTime');
-		
-
-
-
-
-
-
 	}
-
+	// add transaction function end
+	// calculate function start
 	function calculate(){
-
-
-
-
-
+		// calculate service time column total value
 		for(i=0;i<ServiceTime.length;i++){
 			if(ServiceTime[i].innerHTML !=""){
 				ServiceTimeVal += parseFloat(ServiceTime[i].innerHTML);
 			}
 			totalCustomer++;
 		}
-	
-
-
-		console.log(TimeCustomerWaitInQueueVal);
-
+		// calculate WaitInQueue column total value
 		for(i=0;i<WaitInQueue.length;i++){
 			if(WaitInQueue[i].innerHTML !=""){
 				TimeCustomerWaitInQueueVal += parseFloat(WaitInQueue[i].innerHTML);
-
 			}
 		}
-		
-
-
-
-
+		// calculate TimeInSystem column total value
 		for(i=0;i<TimeInSystem.length;i++){
 			if(TimeInSystem[i].innerHTML !=""){
 				TimeCustomerWaiteInSystem += parseFloat(TimeInSystem[i].innerHTML);
 			}
 		}
-	
-
-
-
-
+		// calculate IdelTime column total value
 		for(i=0;i<IdelTime.length;i++){
 			if(IdelTime[i].innerHTML !=""){
 				idelTimeval += parseFloat(IdelTime[i].innerHTML);
 			}
 		}
-		
-
-
-
+		// print our result
 		document.getElementById('ServiceTimeVal').innerHTML = ServiceTimeVal;
 		document.getElementById('TimeCustomerWaitInQueueVal').innerHTML = TimeCustomerWaitInQueueVal;
 		document.getElementById('TimeCustomerWaiteInSystem').innerHTML = TimeCustomerWaiteInSystem;
 		document.getElementById('idelTimeval').innerHTML = idelTimeval;
 		document.getElementById('totalCustomer').innerHTML = totalCustomer;
-		
-		console.log(TimeCustomerWaitInQueueVal);
-		
-
-
 	}
+	// calculate function end
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<!-- java script end -->
 </body>
 </html>
